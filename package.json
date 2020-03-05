@@ -1,0 +1,92 @@
+{
+  "name": "filter",
+  "description": "Validate, transform, and filter data according to a specification",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --ci --coverage",
+    "prepublishOnly": "tsc"
+  },
+  "keywords": [
+    "filter",
+    "transform",
+    "validate"
+  ],
+  "author": {
+    "name": "JauntyScript Organization",
+    "url": "https://github.com/jaunty-script"
+  },
+  "contributors": [
+    {
+      "name": "jaunty-script/filter Contributors",
+      "url": "https://github.com/jaunty-script/filter/graphs/contributors"
+    },
+    {
+      "name": "traderinteractive/filter-php Contributors",
+      "url": "https://github.com/traderinteractive/filter-php/graphs/contributors"
+    },
+    {
+      "name": "traderinteractive/filter-arrays-php Contributors",
+      "url": "https://github.com/traderinteractive/filter-arrays-php/graphs/contributors"
+    },
+    {
+      "name": "traderinteractive/filter-bools-php Contributors",
+      "url": "https://github.com/traderinteractive/filter-bools-php/graphs/contributors"
+    },
+    {
+      "name": "traderinteractive/filter-dates-php Contributors",
+      "url": "https://github.com/traderinteractive/filter-dates-php/graphs/contributors"
+    },
+    {
+      "name": "traderinteractive/filter-floats-php Contributors",
+      "url": "https://github.com/traderinteractive/filter-floats-php/graphs/contributors"
+    },
+    {
+      "name": "traderinteractive/filter-ints-php Contributors",
+      "url": "https://github.com/traderinteractive/filter-ints-php/graphs/contributors"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaunty-script/filter/issues"
+  },
+  "homepage": "https://github.com/jaunty-script/filter",
+  "jest": {
+    "automock": false,
+    "clearMocks": true,
+    "collectCoverageFrom": [
+      "src/**/*.{ts,js}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "resetMocks": true,
+    "setupFiles": [
+      "core-js"
+    ],
+    "testRegex": "^.+\\.test\\.ts$",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    }
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.3",
+    "core-js": "^3.6.4",
+    "jest": "^25.1.0",
+    "ts-jest": "^25.2.1",
+    "typescript": "^3.8.3"
+  }
+}
