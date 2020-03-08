@@ -16,7 +16,7 @@ jobs:
           node-version: ${{matrix.node-version}}
       - name: Install dependencies
         run: npm ci
-      - name: Set npm version to ${{GITHUB_REF}}
+      - name: Set npm version
         run: npm version ${GITHUB_REF} --no-git-tag-version
       - name: Publish to npm
         run: npm publish
