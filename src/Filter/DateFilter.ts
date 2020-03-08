@@ -1,5 +1,5 @@
-import FilterException from 'Error/FilterException';
-import InvalidArgumentException from 'Error/InvalidArgumentException';
+import FilterException from '../Error/FilterException';
+import InvalidArgumentException from '../Error/InvalidArgumentException';
 
 export default class DateFilter {
   static filter(value: Date|unknown, allowNull: boolean|unknown = false): Date {
