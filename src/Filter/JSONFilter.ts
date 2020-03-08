@@ -1,5 +1,5 @@
-import FilterException from 'Error/FilterException';
-import InvalidArgumentException from 'Error/InvalidArgumentException';
+import FilterException from '../Error/FilterException';
+import InvalidArgumentException from '../Error/InvalidArgumentException';
 
 export default class JSONFilter {
   static parse(value: string|unknown, shouldAllowNull: boolean|unknown = false): Object {

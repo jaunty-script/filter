@@ -2,6 +2,7 @@
   "name": "@jaunty-script/filter",
   "description": "Validate, transform, and filter data according to a specification",
   "main": "lib/index.js",
+  "types": "lib",
   "scripts": {
     "build": "tsc",
     "test": "jest --ci --coverage",
@@ -63,6 +64,11 @@
         "functions": 100,
         "lines": 100,
         "statements": 100
+      }
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "./test/tsconfig.json"
       }
     },
     "moduleDirectories": [

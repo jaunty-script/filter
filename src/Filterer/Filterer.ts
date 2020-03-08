@@ -1,12 +1,12 @@
-import ArrayFilter from 'Filter/ArrayFilter';
-import BooleanFilter from 'Filter/BooleanFilter';
-import DateFilter from 'Filter/DateFilter';
-import FilterException from 'Error/FilterException';
-import FiltererResponse from 'Filterer/FiltererResponse';
-import FloatFilter from 'Filter/FloatFilter';
-import IntegerFilter from 'Filter/IntegerFilter';
-import JSONFilter from 'Filter/JSONFilter';
-import StringFilter from 'Filter/StringFilter';
+import ArrayFilter from '../Filter/ArrayFilter';
+import BooleanFilter from '../Filter/BooleanFilter';
+import DateFilter from '../Filter/DateFilter';
+import FilterException from '../Error/FilterException';
+import FiltererResponse from '../Filterer/FiltererResponse';
+import FloatFilter from '../Filter/FloatFilter';
+import IntegerFilter from '../Filter/IntegerFilter';
+import JSONFilter from '../Filter/JSONFilter';
+import StringFilter from '../Filter/StringFilter';
 
 type Options = {
   allowUnknowns?: boolean;

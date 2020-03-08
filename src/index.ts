@@ -1,3 +1,3 @@
-import Filterer from 'Filterer/Filterer';
+import Filterer from './Filterer/Filterer';
 
 export default Filterer;
