@@ -1,4 +1,4 @@
-import InvalidArgumentException from "Error/InvalidArgumentException";
+import InvalidArgumentException from 'Error/InvalidArgumentException';
 
 describe('InvalidArgumentException', () => {
   test('constructor(message)', () => {

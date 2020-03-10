@@ -37,8 +37,8 @@ const DEFAULT_FILTER_ALIASES = {
   int: IntegerFilter.filter,
   json: JSONFilter.parse,
   object: filterObject,
-  ofObjects: ofObjects,
-  ofScalars: ofScalars,
+  ofObjects,
+  ofScalars,
   redact: StringFilter.redact,
   split: StringFilter.split,
   string: StringFilter.filter,
@@ -52,7 +52,7 @@ const DEFAULT_OPTIONS = {
   allowUnknowns: false,
   defaultRequired: false,
   filterAliases: DEFAULT_FILTER_ALIASES,
-}
+};
 
 export default class Filterer {
   private specification: Object;
@@ -81,58 +81,58 @@ export default class Filterer {
   }
 
   execute(input: Object): FiltererResponse {
-      const inputToFilter = objectIntersection(input, this.specification);
-      const leftOverSpec = objectDifference(this.specification, input);
-      const leftOverInput = objectDifference(input, this.specification);
+    const inputToFilter = objectIntersection(input, this.specification);
+    const leftOverSpec = objectDifference(this.specification, input);
+    const leftOverInput = objectDifference(input, this.specification);
 
-      let errors = [];
-      let conflicts = {};
-      Object.entries(inputToFilter).forEach(([field, fieldValue]) => {
-        let filters = this.specification[field];
-        assertFiltersIsAnObjectOrArray(filters, field);
-        let customError: string;
-        if (!Array.isArray(filters)) {
-          customError = validateCustomError(filters, field);
-          conflicts = extractConflicts(filters, field, conflicts);
-          filters = filters.filters;
-          if (filters == null) {
-            filters = [[]];
-          }
-          assertFiltersIsAnArray(filters, field);
+    let errors = [];
+    let conflicts = {};
+    Object.entries(inputToFilter).forEach(([field, fieldValue]) => {
+      let filters = this.specification[field];
+      let result = fieldValue;
+      assertFiltersIsAnObjectOrArray(filters, field);
+      let customError: string;
+      if (!Array.isArray(filters)) {
+        customError = validateCustomError(filters, field);
+        conflicts = extractConflicts(filters, field, conflicts);
+        filters = filters.filters;
+        if (filters == null) {
+          filters = [[]];
         }
-        filters.forEach((filter: any[]) => {
-          assertFilterIsAnArray(filter, field);
-          if (filter.length === 0) {
-            return;
-          }
-          const filterArguments = [...filter];
-          let filterFunction = filterArguments.shift();
-          filterFunction = handleFilterAliases(filterFunction, this.filterAliases);
-          assertFilterFunctionIsFunction(filterFunction, field);
-          try {
-            fieldValue = filterFunction(fieldValue, ...filterArguments);
-          } catch (error) {
-            errors = handleCustomError(field, fieldValue, error, errors, customError);
-            return;
-          }
-        });
-        inputToFilter[field] = fieldValue;
-      });
-      Object.entries(leftOverSpec).forEach(([field, filters]) => {
-        assertFiltersIsAnObjectOrArray(filters, field);
-        let required = this.defaultRequired;
-        if (!Array.isArray(filters)) {
-          required = getRequired(filters, this.defaultRequired, field);
-          if (typeof filters.defaultValue !== 'undefined') {
-            inputToFilter[field] = filters.defaultValue;
-            return;
-          }
+        assertFiltersIsAnArray(filters, field);
+      }
+      filters.forEach((filter: any[]) => {
+        assertFilterIsAnArray(filter, field);
+        if (filter.length === 0) {
+          return;
         }
-        errors = handleRequiredFields(required, field, errors);
+        const filterArguments = [...filter];
+        let filterFunction = filterArguments.shift();
+        filterFunction = handleFilterAliases(filterFunction, this.filterAliases);
+        assertFilterFunctionIsFunction(filterFunction, field);
+        try {
+          result = filterFunction(result, ...filterArguments);
+        } catch (error) {
+          errors = handleCustomError(field, result, error, errors, customError);
+        }
       });
-      errors = handleAllowUnknowns(this.allowUnknowns, leftOverInput, errors);
-      errors = handleConflicts(inputToFilter, conflicts, errors);
-      return new FiltererResponse(inputToFilter, errors, leftOverInput);
+      inputToFilter[field] = result;
+    });
+    Object.entries(leftOverSpec).forEach(([field, filters]) => {
+      assertFiltersIsAnObjectOrArray(filters, field);
+      let required = this.defaultRequired;
+      if (!Array.isArray(filters)) {
+        required = getRequired(filters, this.defaultRequired, field);
+        if (typeof filters.defaultValue !== 'undefined') {
+          inputToFilter[field] = filters.defaultValue;
+          return;
+        }
+      }
+      errors = handleRequiredFields(required, field, errors);
+    });
+    errors = handleAllowUnknowns(this.allowUnknowns, leftOverInput, errors);
+    errors = handleConflicts(inputToFilter, conflicts, errors);
+    return new FiltererResponse(inputToFilter, errors, leftOverInput);
   }
 
   getOptions(): Object {
@@ -157,14 +157,17 @@ export default class Filterer {
 }
 
 function arrayIntersection<T>(arrayOne: T[], arrayTwo: T[]): T[] {
-  return arrayOne.filter(key => arrayTwo.includes(key));
+  return arrayOne.filter((key) => arrayTwo.includes(key));
 }
 
 function arrayDifference<T>(arrayOne: T[], arrayTwo: T[]): T[] {
-  return arrayOne.filter(key => !arrayTwo.includes(key));
+  return arrayOne.filter((key) => !arrayTwo.includes(key));
 }
 
-function assertFilterFunctionIsFunction(filterFunction: unknown, field: string): filterFunction is Function {
+function assertFilterFunctionIsFunction(
+  filterFunction: unknown,
+  field: string,
+): filterFunction is Function {
   if (typeof filterFunction !== 'function') {
     throw new Error(`filter ${JSON.stringify(filterFunction)} for field "${field}" is not a function`);
   }
@@ -200,7 +203,11 @@ function checkForUnknowns(leftOverInput: Object, existingErrors: string[]): stri
   return errors;
 }
 
-function extractConflicts(filters: FilterSpecification, field: string, existingConflicts: Object): Object {
+function extractConflicts(
+  filters: FilterSpecification,
+  field: string,
+  existingConflicts: Object,
+): Object {
   let { conflictsWith } = filters;
   if (conflictsWith == null) {
     return existingConflicts;
@@ -221,7 +228,11 @@ function getRequired(filters: FilterSpecification, defaultRequired: boolean, fie
   return required;
 }
 
-function handleAllowUnknowns(allowUnknowns: boolean, leftOverInput: Object, existingErrors: string[]) {
+function handleAllowUnknowns(
+  allowUnknowns: boolean,
+  leftOverInput: Object,
+  existingErrors: string[],
+) {
   let errors = [...existingErrors];
   if (!allowUnknowns) {
     errors = checkForUnknowns(leftOverInput, errors);
@@ -243,7 +254,13 @@ function handleConflicts(inputToFilter: Object, conflicts: Object, errors: strin
   return errors;
 }
 
-function handleCustomError(field: string, value: unknown, error: Error, errors: string[], customError: string = null) {
+function handleCustomError(
+  field: string,
+  value: unknown,
+  error: Error,
+  errors: string[],
+  customError: string = null,
+) {
   let errorMessage = customError;
   if (errorMessage === null) {
     errorMessage = `Field "${field}" with value {value} failed filtering, message "${error.message}"`;
@@ -252,7 +269,10 @@ function handleCustomError(field: string, value: unknown, error: Error, errors: 
   return errors;
 }
 
-function handleFilterAliases(filterFunction: string|Function, filterAliases: Object): string|Function {
+function handleFilterAliases(
+  filterFunction: string|Function,
+  filterAliases: Object,
+): string|Function {
   if (typeof filterFunction === 'string' && typeof filterAliases[filterFunction] !== 'undefined') {
     return filterAliases[filterFunction];
   }
@@ -273,8 +293,9 @@ function objectIntersection(objectOne: Object, objectTwo: Object): Object {
   if (intersection.length === 0) {
     return {};
   }
-  return intersection.reduce((result, key) => {
-    result[key] = objectOne[key]
+  return intersection.reduce((previousResult, key) => {
+    const result = { ...previousResult };
+    result[key] = objectOne[key];
     return result;
   }, {});
 }
@@ -286,7 +307,8 @@ function objectDifference(objectOne: Object, objectTwo: Object): Object {
   if (difference.length === 0) {
     return {};
   }
-  return difference.reduce((result, key) => {
+  return difference.reduce((previousResult, key) => {
+    const result = { ...previousResult };
     result[key] = objectOne[key];
     return result;
   }, {});

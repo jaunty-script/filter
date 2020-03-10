@@ -5,7 +5,7 @@ export default class ArrayFilter {
   static filter(
     value: any[]|unknown,
     minCount: number|unknown = 1,
-    maxCount: number|unknown = Number.MAX_SAFE_INTEGER
+    maxCount: number|unknown = Number.MAX_SAFE_INTEGER,
   ): any[] {
     if (typeof minCount !== 'number') {
       throw new InvalidArgumentException(`minCount ${JSON.stringify(minCount)} is not a number`);
@@ -41,7 +41,7 @@ export default class ArrayFilter {
 
   static flatten(value: any[]|unknown): any[] {
     if (!Array.isArray(value)) {
-      throw new FilterException(`${JSON.stringify(value)} is not an array`)
+      throw new FilterException(`${JSON.stringify(value)} is not an array`);
     }
     return value.flat(Infinity);
   }
@@ -61,6 +61,7 @@ function inArray(value: any, haystack: any[], strict: boolean): boolean {
   if (strict) {
     return haystack.includes(value);
   }
-
-  return haystack.some(arrayValue => value == arrayValue);
+  // Disabling the === check here as we actually want loose checking
+  // eslint-disable-next-line eqeqeq
+  return haystack.some((arrayValue) => value == arrayValue);
 }

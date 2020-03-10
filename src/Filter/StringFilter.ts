@@ -61,7 +61,7 @@ export default class StringFilter {
   static redact(
     value: string|unknown,
     words: string[]|Function|unknown,
-    replacement: string|unknown = ''
+    replacement: string|unknown = '',
   ): string {
     if (typeof replacement !== 'string') {
       throw new InvalidArgumentException(`replacement ${JSON.stringify(replacement)} is not a string`);
@@ -74,13 +74,11 @@ export default class StringFilter {
     }
     validateIfObjectIsAString(value);
     const filteredValue = `${value}`;
-    if (typeof words === 'function') {
-      words = words();
-    }
-    if (!Array.isArray(words)) {
+    const providedWords = (typeof words === 'function') ? words() : words;
+    if (!Array.isArray(providedWords)) {
       throw new InvalidArgumentException('words was not an array or a function that returns an array');
     }
-    return replaceWordsWithReplacementString(filteredValue, words, replacement.charAt(0));
+    return replaceWords(filteredValue, providedWords, replacement.charAt(0));
   }
 
   static split(value: string|unknown, delimiter: string|unknown = ','): string[] {
@@ -125,11 +123,11 @@ function escapeRegExp(string: string): string {
   return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
 }
 
-function replaceWordsWithReplacementString(value: string, words: string[], replacement: string): string {
-  return words.reduce((currentValue, word) => replaceWordWithReplacementString(currentValue, word, replacement), value);
+function replaceWords(value: string, words: string[], replacement: string): string {
+  return words.reduce((currentValue, word) => replaceWord(currentValue, word, replacement), value);
 }
 
-function replaceWordWithReplacementString(value: string, word: string, replacement: string): string {
+function replaceWord(value: string, word: string, replacement: string): string {
   const escapedWord = escapeRegExp(word);
   const caseInsensitiveWordPattern = new RegExp(`\\b${escapedWord}\\b`, 'gi');
   const replacementString = replacement.repeat(word.length);

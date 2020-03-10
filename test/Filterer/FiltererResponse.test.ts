@@ -1,10 +1,10 @@
-import FiltererResponse from "Filterer/FiltererResponse";
+import FiltererResponse from 'Filterer/FiltererResponse';
 
 describe('FiltererResponse', () => {
   test.each([
     [{
       filteredValue: '',
-      errors: ['error one','error two'],
+      errors: ['error one', 'error two'],
       unknowns: { unknownOne: 'one', unknownTwo: 'two' },
       expectedErrorMessage: 'error one\nerror two',
       expectedSuccess: false,

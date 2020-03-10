@@ -1,4 +1,4 @@
-import FilterException from "Error/FilterException";
+import FilterException from 'Error/FilterException';
 
 describe('FilterException', () => {
   test('constructor(message)', () => {

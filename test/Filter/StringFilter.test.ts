@@ -1,6 +1,6 @@
-import FilterException from "Error/FilterException";
-import InvalidArgumentException from "Error/InvalidArgumentException";
-import StringFilter from "Filter/StringFilter";
+import FilterException from 'Error/FilterException';
+import InvalidArgumentException from 'Error/InvalidArgumentException';
+import StringFilter from 'Filter/StringFilter';
 
 describe('StringFilter', () => {
   test.each([

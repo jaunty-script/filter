@@ -5,6 +5,7 @@
   "types": "lib",
   "scripts": {
     "build": "tsc",
+    "cs": "eslint . --ext .ts",
     "test": "jest --ci --coverage",
     "prepublishOnly": "tsc"
   },
@@ -52,6 +53,10 @@
     "url": "https://github.com/jaunty-script/filter/issues"
   },
   "homepage": "https://github.com/jaunty-script/filter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaunty-script/filter"
+  },
   "jest": {
     "automock": false,
     "clearMocks": true,
@@ -90,7 +95,14 @@
   },
   "devDependencies": {
     "@types/jest": "^25.1.4",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
     "core-js": "^3.6.4",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-json": "^2.1.0",
     "jest": "^25.1.0",
     "ts-jest": "^25.2.1",
     "typescript": "^3.8.3"

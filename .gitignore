@@ -4,5 +4,7 @@ lib/
 node_modules/
 .*
 !.github/
+!.eslintrc.json
+!.gitattributes
 !.gitignore
 !.npmignore
