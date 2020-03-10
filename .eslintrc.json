@@ -1,0 +1,16 @@
+{
+  "ignorePatterns": [
+    "lib"
+  ],
+  "overrides": [
+    {
+      "extends": "./src/.eslintrc.json",
+      "files": "src/**/*.ts"
+    },
+    {
+      "extends": "./test/.eslintrc.json",
+      "files": "test/**/*.ts"
+    }
+  ],
+  "root": true
+}

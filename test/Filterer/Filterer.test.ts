@@ -1,5 +1,5 @@
-import Filterer from "index";
-import FiltererResponse from "Filterer/FiltererResponse";
+import Filterer from 'index';
+import FiltererResponse from 'Filterer/FiltererResponse';
 
 describe('Filterer', () => {
   test('Filterer.DEFAULT_FILTER_ALIASES', () => {
@@ -340,7 +340,7 @@ describe('Filterer', () => {
         ],
       },
       expectedErrors: [
-        `Field "field" with value [{"value":"one"},[],[]] failed filtering, message "Value at position "1" is not an object\nValue at position "2" is not an object"`,
+        'Field "field" with value [{"value":"one"},[],[]] failed filtering, message "Value at position "1" is not an object\nValue at position "2" is not an object"',
       ],
       expectedUnknowns: {},
     }],
@@ -445,9 +445,10 @@ describe('Filterer', () => {
       expectedErrors,
       expectedUnknowns,
     } = example;
+    const expected = new FiltererResponse(expectedValue, expectedErrors, expectedUnknowns);
     const filterer = new Filterer(specification, options);
     const result = filterer.execute(value);
-    expect(result).toStrictEqual(new FiltererResponse(expectedValue, expectedErrors, expectedUnknowns));
+    expect(result).toStrictEqual(expected);
   });
 
   test.each([

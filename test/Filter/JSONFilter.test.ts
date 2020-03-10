@@ -1,6 +1,6 @@
-import FilterException from "Error/FilterException";
-import InvalidArgumentException from "Error/InvalidArgumentException";
-import JSONFilter from "Filter/JSONFilter";
+import FilterException from 'Error/FilterException';
+import InvalidArgumentException from 'Error/InvalidArgumentException';
+import JSONFilter from 'Filter/JSONFilter';
 
 describe('JSONFilter', () => {
   test.each([
@@ -13,7 +13,7 @@ describe('JSONFilter', () => {
     [{
       value: '{"foo":[{"bar":"baz"}]}',
       shouldAllowNull: undefined,
-      expected: { foo: [{ bar: 'baz' }]},
+      expected: { foo: [{ bar: 'baz' }] },
       expectedError: undefined,
     }],
     [{

@@ -1,6 +1,6 @@
-import FilterException from "Error/FilterException";
-import IntegerFilter from "Filter/IntegerFilter";
-import InvalidArgumentException from "Error/InvalidArgumentException";
+import FilterException from 'Error/FilterException';
+import IntegerFilter from 'Filter/IntegerFilter';
+import InvalidArgumentException from 'Error/InvalidArgumentException';
 
 describe('IntegerFilter', () => {
   test.each([
