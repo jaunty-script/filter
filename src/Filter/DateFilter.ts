@@ -25,11 +25,11 @@ export default class DateFilter {
     return new Date(value);
   }
 
-  static format(date: Date|unknown, format: string|null|unknown): string {
+  static format(date: Date|unknown, format: string|null|unknown = null): string {
     if (!(date instanceof Date)) {
       throw new FilterException(`date ${JSON.stringify(date)} is not a Date object`);
     }
-    if (format != null && typeof format !== 'string') {
+    if (format !== null && typeof format !== 'string') {
       throw new InvalidArgumentException(`format ${JSON.stringify(format)} is not a string`);
     }
     if (typeof format === 'string') {

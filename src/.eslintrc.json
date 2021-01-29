@@ -10,7 +10,7 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "import/extensions": "off",
+    "import/extensions": ["error", "never"],
     "import/no-unresolved": "off",
     "lines-between-class-members": [
       "error",
@@ -19,6 +19,11 @@
         "exceptAfterSingleLine": true
       }
     ],
-    "no-use-before-define": "off"
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": false
+      }
+    ]
   }
 }

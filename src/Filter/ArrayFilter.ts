@@ -5,7 +5,7 @@ export default class ArrayFilter {
   static filter(
     value: any[]|unknown,
     minCount: number|unknown = 1,
-    maxCount: number|unknown = Number.MAX_SAFE_INTEGER,
+    maxCount: number|unknown = Infinity,
   ): any[] {
     if (typeof minCount !== 'number') {
       throw new InvalidArgumentException(`minCount ${JSON.stringify(minCount)} is not a number`);

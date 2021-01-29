@@ -1,0 +1,102 @@
+{
+  "from": "git-diff",
+  "reference": "last-tag",
+  "documents": [
+    {
+      "file": "README.md",
+      "dependencies": ["src/Filterer/Filterer.ts"]
+    },
+    {
+      "file": "doc/filters/array.md",
+      "dependencies": ["src/Filter/ArrayFilter.ts"]
+    },
+    {
+      "file": "doc/filters/arrayize.md",
+      "dependencies": ["src/Filter/ArrayFilter.ts"]
+    },
+    {
+      "file": "doc/filters/bool.md",
+      "dependencies": ["src/Filter/BooleanFilter.ts"]
+    },
+    {
+      "file": "doc/filters/boolConvert.md",
+      "dependencies": ["src/Filter/BooleanFilter.ts"]
+    },
+    {
+      "file": "doc/filters/compressString.md",
+      "dependencies": ["src/Filter/StringFilter.ts"]
+    },
+    {
+      "file": "doc/filters/concat.md",
+      "dependencies": ["src/Filter/StringFilter.ts"]
+    },
+    {
+      "file": "doc/filters/date.md",
+      "dependencies": ["src/Filter/DateFilter.ts"]
+    },
+    {
+      "file": "doc/filters/dateFormat.md",
+      "dependencies": ["src/Filter/DateFilter.ts"]
+    },
+    {
+      "file": "doc/filters/flatten.md",
+      "dependencies": ["src/Filter/ArrayFilter.ts"]
+    },
+    {
+      "file": "doc/filters/float.md",
+      "dependencies": ["src/Filter/FloatFilter.ts"]
+    },
+    {
+      "file": "doc/filters/in.md",
+      "dependencies": ["src/Filter/ArrayFilter.ts"]
+    },
+    {
+      "file": "doc/filters/int.md",
+      "dependencies": ["src/Filter/IntegerFilter.ts"]
+    },
+    {
+      "file": "doc/filters/json.md",
+      "dependencies": ["src/Filter/JSONFilter.ts"]
+    },
+    {
+      "file": "doc/filters/object.md",
+      "dependencies": ["src/Filter/filterObject.ts"]
+    },
+    {
+      "file": "doc/filters/ofObjects.md",
+      "dependencies": ["src/Filterer/Filterer.ts"]
+    },
+    {
+      "file": "doc/filters/ofScalars.md",
+      "dependencies": ["src/Filterer/Filterer.ts"]
+    },
+    {
+      "file": "doc/filters/redact.md",
+      "dependencies": ["src/Filter/StringFilter.ts"]
+    },
+    {
+      "file": "doc/filters/split.md",
+      "dependencies": ["src/Filter/StringFilter.ts"]
+    },
+    {
+      "file": "doc/filters/string.md",
+      "dependencies": ["src/Filter/StringFilter.ts"]
+    },
+    {
+      "file": "doc/filters/stripTags.md",
+      "dependencies": ["src/Filter/StringFilter.ts"]
+    },
+    {
+      "file": "doc/filters/translate.md",
+      "dependencies": ["src/Filter/StringFilter.ts"]
+    },
+    {
+      "file": "doc/filters/uint.md",
+      "dependencies": ["src/Filter/IntegerFilter.ts"]
+    },
+    {
+      "file": "doc/filters/validateJSON.md",
+      "dependencies": ["src/Filter/JSONFilter.ts"]
+    }
+  ]
+}

@@ -10,6 +10,10 @@
     {
       "extends": "./test/.eslintrc.json",
       "files": "test/**/*.ts"
+    },
+    {
+      "extends": "airbnb-base",
+      "files": "**/*.js"
     }
   ],
   "root": true

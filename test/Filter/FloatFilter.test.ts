@@ -122,7 +122,7 @@ describe('FloatFilter', () => {
       minValue: undefined,
       maxValue: undefined,
       expected: undefined,
-      expectedError: new FilterException('{} value is not a string'),
+      expectedError: new FilterException('{} value is not a number'),
     }],
     [{
       value: undefined,
@@ -130,7 +130,7 @@ describe('FloatFilter', () => {
       minValue: undefined,
       maxValue: undefined,
       expected: undefined,
-      expectedError: new FilterException('undefined value is not a string'),
+      expectedError: new FilterException('undefined value is not a number'),
     }],
     [{
       value: null,
@@ -138,7 +138,7 @@ describe('FloatFilter', () => {
       minValue: undefined,
       maxValue: undefined,
       expected: undefined,
-      expectedError: new FilterException('null value is not a string'),
+      expectedError: new FilterException('null value is not a number'),
     }],
     [{
       value: null,
@@ -146,7 +146,7 @@ describe('FloatFilter', () => {
       minValue: undefined,
       maxValue: undefined,
       expected: undefined,
-      expectedError: new FilterException('null value is not a string'),
+      expectedError: new FilterException('null value is not a number'),
     }],
   ])('FloatFilter.filter(value, allowNull, minValue, maxValue) | %j', (example) => {
     const {

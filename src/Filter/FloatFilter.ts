@@ -27,7 +27,7 @@ export default class FloatFilter {
       const parsedValue = parseFloat(value);
       return ensureValueNotInfiniteAndInRange(value, parsedValue, minValue, maxValue);
     }
-    throw new FilterException(`${JSON.stringify(value)} value is not a string`);
+    throw new FilterException(`${JSON.stringify(value)} value is not a number`);
   }
 }
 
